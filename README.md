@@ -16,5 +16,6 @@ All reverse engineered from the official PEKA app, made in one night.
 ## Screenshots
 <details>
    <summary>Click to reveal!</summary>
-   ![Home Screen](.github/ss1.png) ![Tickets Screen](.github/ss2.png)
+   <img width="720" height="1600" alt="ss1" src="https://github.com/user-attachments/assets/3044683a-b629-42ce-83b8-1a96bf61fe37" />
+   <img width="720" height="1600" alt="ss2" src="https://github.com/user-attachments/assets/bff6e9da-a879-44d2-a152-33da237a01b7" />
 </details>
