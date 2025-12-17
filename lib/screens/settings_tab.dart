@@ -22,8 +22,6 @@ class _SettingsTabState extends State<SettingsTab> {
   String? _updateMessage;
 
   static const String _currentVersion = '1.0.0';
-  static const String _repoOwner = 'nyxiereal';
-  static const String _repoName = 'pekky';
 
   Future<void> _checkForUpdates() async {
     setState(() {
@@ -33,21 +31,17 @@ class _SettingsTabState extends State<SettingsTab> {
 
     try {
       final url = Uri.parse(
-        'https://api.github.com/repos/$_repoOwner/$_repoName/releases/latest',
+        'https://api.github.com/repos/nyxiereal/pekky/releases/latest',
       );
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         final tagName = data['tag_name'] as String;
-        final version = tagName.startsWith('v')
-            ? tagName.substring(1)
-            : tagName;
-
         setState(() {
-          _latestVersion = version;
-          if (version != _currentVersion) {
-            _updateMessage = 'Update available: v$version';
+          _latestVersion = tagName;
+          if (tagName != _currentVersion) {
+            _updateMessage = 'Update available: $tagName';
           } else {
             _updateMessage = 'You\'re on the latest version';
           }
@@ -69,7 +63,9 @@ class _SettingsTabState extends State<SettingsTab> {
   }
 
   Future<void> _openGitHubRepo() async {
-    final url = Uri.parse('https://github.com/$_repoOwner/$_repoName');
+    final url = Uri.parse(
+      'https://github.com/nyxiereal/pekky/releases/latest/download/app-prod-release.apk',
+    );
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
@@ -206,7 +202,7 @@ class _SettingsTabState extends State<SettingsTab> {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 title: const Text('View on GitHub'),
-                subtitle: Text('$_repoOwner/$_repoName'),
+                subtitle: Text('nyxiereal/pekky'),
                 trailing: const Icon(Icons.open_in_new),
                 onTap: _openGitHubRepo,
               ),
